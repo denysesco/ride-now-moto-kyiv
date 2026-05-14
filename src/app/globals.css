@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap');
+
+@layer base {
+  body {
+    @apply bg-brand-darker text-brand-text font-sans;
+  }
+
+  ::selection {
+    @apply bg-brand-orange/30 text-white;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-brand-orange text-white font-semibold px-6 py-3 rounded-lg
+    hover:bg-orange-500 transition-all duration-300
+    active:scale-95;
+  }
+
+  .btn-outline {
+    @apply border-2 border-brand-orange text-brand-orange font-semibold px-6 py-3 rounded-lg
+    hover:bg-brand-orange hover:text-white transition-all duration-300
+    active:scale-95;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-display font-bold uppercase tracking-wide;
+  }
+
+  .section-subtitle {
+    @apply text-brand-muted text-lg max-w-2xl;
+  }
+
+  .card-dark {
+    @apply bg-brand-gray border border-brand-light rounded-xl p-6
+    hover:border-brand-orange/30 transition-all duration-300;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-orange to-orange-300;
+  }
+}
