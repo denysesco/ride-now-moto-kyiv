@@ -1,69 +1,51 @@
-import { motion } from 'framer-motion'
-
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-ride-black via-ride-black/95 to-ride-black/90 z-10" />
-
-      {/* Background image placeholder — replace with actual photo */}
-      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1558981359-219d6364c9c8?q=80&w=2100')] bg-cover bg-center brightness-50" />
-
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-3xl"
-        >
-          <motion.p
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-ride-red font-bold uppercase tracking-[0.3em] text-sm mb-4"
-          >
-            Київ • Прокат та сервіс
-          </motion.p>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.9] tracking-tighter mb-6">
-            Відчуй
-            <br />
-            <span className="text-ride-red">Свободу</span>
-            <br />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/60 to-black z-10" />
+      <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
+        <source src="https://cdn.pixabay.com/vimeo/635319136/motorcycle-83528.mp4?width=1280" type="video/mp4" />
+      </video>
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="max-w-3xl">
+          <div className="flex items-center gap-2 mb-6">
+            <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
+            <span className="text-orange-400 text-sm font-medium uppercase tracking-widest">Київ • Прокат та сервіс</span>
+          </div>
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+            Відчуй<br />
+            <span className="text-gradient">Свободу</span><br />
             на двох колесах
           </h1>
-          <p className="text-ride-gray-light text-lg md:text-xl max-w-xl mb-8 leading-relaxed">
-            Преміальні мотоцикли в оренду в Києві. Без застави, з доставкою, 
-            з повним страхуванням. Обирай — і в путь.
+          <p className="text-gray-300 text-lg sm:text-xl max-w-xl mb-8 leading-relaxed">
+            Преміальні мотоцикли в оренду в Києві. Без застави, з доставкою, з повним страхуванням. Обирай — і в путь.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href="#bikes" className="btn-primary text-base !py-4 !px-10">
+            <a href="#catalog" className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-3.5 rounded-full text-lg font-semibold hover:shadow-xl hover:shadow-orange-500/30 transition-all">
               Обрати байк
             </a>
-            <a href="#services" className="btn-outline text-base !py-4 !px-10">
+            <a href="#service" className="border border-white/20 text-white px-8 py-3.5 rounded-full text-lg font-semibold hover:bg-white/5 transition-all">
               Сервіс
             </a>
           </div>
-        </motion.div>
-
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="grid grid-cols-3 gap-8 max-w-lg mt-16 border-t border-ride-white/10 pt-8"
-        >
-          {[
-            { value: '50+', label: 'Байків' },
-            { value: '100%', label: 'Страховка' },
-            { value: '24/7', label: 'Підтримка' },
-          ].map((stat) => (
-            <div key={stat.label}>
-              <p className="text-2xl md:text-3xl font-black text-ride-red">{stat.value}</p>
-              <p className="text-ride-gray text-xs uppercase tracking-wider mt-1">{stat.label}</p>
+          <div className="flex items-center gap-8 mt-12">
+            <div>
+              <span className="text-2xl font-bold text-white">50+</span>
+              <p className="text-gray-500 text-sm">Байків</p>
             </div>
-          ))}
-        </motion.div>
+            <div className="w-px h-10 bg-white/10" />
+            <div>
+              <span className="text-2xl font-bold text-white">100%</span>
+              <p className="text-gray-500 text-sm">Страховка</p>
+            </div>
+            <div className="w-px h-10 bg-white/10" />
+            <div>
+              <span className="text-2xl font-bold text-white">24/7</span>
+              <p className="text-gray-500 text-sm">Підтримка</p>
+            </div>
+          </div>
+        </div>
       </div>
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a0a0a] to-transparent z-10" />
     </section>
-  )
+  );
 }
