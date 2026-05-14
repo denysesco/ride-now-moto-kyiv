@@ -1,29 +1,43 @@
-import Head from 'next/head'
-import Layout from '@/components/Layout'
-import Hero from '@/components/Hero'
-import MotoGallery from '@/components/MotoGallery'
-import Services from '@/components/Services'
-import ContactsMap from '@/components/ContactsMap'
+import { useState } from 'react';
+import Header from '../components/Header';
+import Hero from '../components/Hero';
+import Catalog from '../components/Catalog';
+import Service from '../components/Service';
+import BookingForm from '../components/BookingForm';
+import Contacts from '../components/Contacts';
 
 export default function Home() {
+  const [selectedBike, setSelectedBike] = useState(null);
+
+  const handleBook = (bike) => {
+    setSelectedBike(bike);
+    const el = document.getElementById('booking');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+      // Small delay to let the booking form mount with pre-selected bike
+      setTimeout(() => {
+        const event = new CustomEvent('selectBike', { detail: bike });
+        window.dispatchEvent(event);
+      }, 300);
+    }
+  };
+
   return (
-    <>
-      <Head>
-        <title>Ride NOW Moto — Прокат мотоциклів та сервіс у Києві</title>
-        <meta name="description" content="Преміальні мотоцикли в оренду в Києві. Без застави, з доставкою та страхуванням. Повний спектр мотосервісу." />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-        {/* Open Graph */}
-        <meta property="og:title" content="Ride NOW Moto — Прокат мотоциклів та сервіс у Києві" />
-        <meta property="og:description" content="Преміальні мотоцикли в оренду. Без застави, з доставкою та повним страхуванням." />
-        <meta property="og:type" content="website" />
-      </Head>
-      <Layout>
-        <Hero />
-        <MotoGallery />
-        <Services />
-        <ContactsMap />
-      </Layout>
-    </>
-  )
+    <div className="min-h-screen bg-[#0a0a0a]">
+      <Header />
+      <Hero />
+      <Catalog onBook={handleBook} />
+      <Service />
+      <BookingForm preselectedBike={selectedBike} />
+      <Contacts />
+
+      <footer className="py-8 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <p className="text-gray-500 text-sm">
+            &copy; {new Date().getFullYear()} Ride NOW Moto. Всі права захищені.
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
 }
