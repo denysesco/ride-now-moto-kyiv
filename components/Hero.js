@@ -2,44 +2,44 @@ import { motion } from 'framer-motion'
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background overlay gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-ride-black via-ride-black/95 to-ride-black/90 z-10" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-ride-black via-ride-dark to-ride-black" />
+      <div className="absolute inset-0 opacity-30" style={{
+        backgroundImage: 'url("https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=1920")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }} />
 
-      {/* Background image placeholder — replace with actual photo */}
-      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1558981359-219d6364c9c8?q=80&w=2100')] bg-cover bg-center brightness-50" />
-
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-20">
+      {/* Content */}
+      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-3xl"
         >
-          <motion.p
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-ride-red font-bold uppercase tracking-[0.3em] text-sm mb-4"
-          >
+          <span className="text-ride-red text-sm tracking-[0.3em] uppercase mb-4 block">
             Київ • Прокат та сервіс
-          </motion.p>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.9] tracking-tighter mb-6">
-            Відчуй
-            <br />
-            <span className="text-ride-red">Свободу</span>
-            <br />
+          </span>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-none mb-6">
+            Відчуй<br />
+            <span className="text-ride-red">Свободу</span><br />
             на двох колесах
           </h1>
-          <p className="text-ride-gray-light text-lg md:text-xl max-w-xl mb-8 leading-relaxed">
-            Преміальні мотоцикли в оренду в Києві. Без застави, з доставкою, 
-            з повним страхуванням. Обирай — і в путь.
+          <p className="text-ride-gray-light text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+            Преміальні мотоцикли в оренду в Києві. Без застави, з доставкою, з повним страхуванням. Обирай — і в путь.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <a href="#bikes" className="btn-primary text-base !py-4 !px-10">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="#catalog"
+              className="bg-ride-red hover:bg-ride-red-hover text-white font-semibold px-10 py-4 rounded text-lg transition-colors uppercase tracking-wide"
+            >
               Обрати байк
             </a>
-            <a href="#services" className="btn-outline text-base !py-4 !px-10">
+            <a
+              href="#services"
+              className="border border-white/20 hover:border-ride-red text-white font-semibold px-10 py-4 rounded text-lg transition-colors uppercase tracking-wide"
+            >
               Сервіс
             </a>
           </div>
@@ -47,19 +47,19 @@ export default function Hero() {
 
         {/* Stats */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="grid grid-cols-3 gap-8 max-w-lg mt-16 border-t border-ride-white/10 pt-8"
+          transition={{ delay: 0.5, duration: 0.6 }}
+          className="grid grid-cols-3 gap-8 mt-20 max-w-xl mx-auto"
         >
           {[
             { value: '50+', label: 'Байків' },
             { value: '100%', label: 'Страховка' },
             { value: '24/7', label: 'Підтримка' },
           ].map((stat) => (
-            <div key={stat.label}>
-              <p className="text-2xl md:text-3xl font-black text-ride-red">{stat.value}</p>
-              <p className="text-ride-gray text-xs uppercase tracking-wider mt-1">{stat.label}</p>
+            <div key={stat.label} className="text-center">
+              <div className="text-3xl md:text-4xl font-black text-ride-red">{stat.value}</div>
+              <div className="text-ride-gray text-sm mt-1">{stat.label}</div>
             </div>
           ))}
         </motion.div>
