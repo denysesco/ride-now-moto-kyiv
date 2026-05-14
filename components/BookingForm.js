@@ -1,16 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const bikes = [
-  { id: 1, name: 'BMW S1000RR', price: 3500 },
-  { id: 2, name: 'Harley-Davidson Street Glide', price: 4000 },
-  { id: 3, name: 'Yamaha MT-09 SP', price: 2800 },
-  { id: 4, name: 'Ducati Panigale V4', price: 5000 },
+  { id: 1, name: 'BMW S1000RR', price: 3500, category: 'Спортбайк' },
+  { id: 2, name: 'Harley-Davidson Street Glide', price: 4000, category: 'Круїзер' },
+  { id: 3, name: 'Yamaha MT-09 SP', price: 2800, category: 'Нейкед' },
+  { id: 4, name: 'Ducati Panigale V4', price: 5000, category: 'Спортбайк' },
 ];
 
-export default function BookingForm() {
-  const [step, setStep] = useState(1);
+export default function BookingForm({ preselectedBike }) {
+  const [step, setStep] = useState(preselectedBike ? 2 : 1);
   const [form, setForm] = useState({
-    bikeId: '',
+    bikeId: preselectedBike?.id || '',
     startDate: '',
     endDate: '',
     name: '',
@@ -21,6 +21,15 @@ export default function BookingForm() {
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    const handler = (e) => {
+      setForm(prev => ({ ...prev, bikeId: e.detail.id }));
+      setStep(2);
+    };
+    window.addEventListener('selectBike', handler);
+    return () => window.removeEventListener('selectBike', handler);
+  }, []);
 
   const update = (field, value) => setForm(prev => ({ ...prev, [field]: value }));
 
@@ -49,6 +58,7 @@ export default function BookingForm() {
           bikeName: selectedBike?.name,
           totalPrice,
           days: calcDays(),
+          status: 'нова',
         }),
       });
 
@@ -93,7 +103,6 @@ export default function BookingForm() {
           </h2>
         </div>
 
-        {/* Steps indicator */}
         <div className="flex items-center justify-center gap-4 mb-10">
           {[1, 2, 3].map((s) => (
             <div key={s} className="flex items-center gap-2">
@@ -117,7 +126,6 @@ export default function BookingForm() {
             </div>
           )}
 
-          {/* Step 1: Bike selection */}
           {step === 1 && (
             <div>
               <h3 className="text-xl font-bold text-white mb-6">Оберіть байк</h3>
@@ -134,6 +142,7 @@ export default function BookingForm() {
                     }`}
                   >
                     <p className="text-white font-bold">{bike.name}</p>
+                    <p className="text-gray-500 text-xs mt-0.5">{bike.category}</p>
                     <p className="text-orange-400 text-sm mt-1">від {bike.price} грн/добу</p>
                   </button>
                 ))}
@@ -141,7 +150,6 @@ export default function BookingForm() {
             </div>
           )}
 
-          {/* Step 2: Dates */}
           {step === 2 && (
             <div>
               <h3 className="text-xl font-bold text-white mb-6">Виберіть дати</h3>
@@ -197,7 +205,6 @@ export default function BookingForm() {
             </div>
           )}
 
-          {/* Step 3: Contact info */}
           {step === 3 && (
             <div>
               <h3 className="text-xl font-bold text-white mb-6">Ваші контакти</h3>
