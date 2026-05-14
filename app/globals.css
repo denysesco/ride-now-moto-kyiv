@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-moto-black text-moto-white font-sans antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-moto-accent text-white;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-moto-accent text-white font-bold uppercase tracking-wider 
+           hover:bg-red-700 transition-all duration-300 
+           border-2 border-moto-accent hover:border-red-700
+           text-sm sm:text-base;
+  }
+
+  .btn-outline {
+    @apply px-6 py-3 bg-transparent text-moto-white font-bold uppercase tracking-wider
+           border-2 border-moto-white hover:bg-moto-white hover:text-moto-black
+           transition-all duration-300 text-sm sm:text-base;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-moto-accent to-moto-gold;
+  }
+
+  .card-dark {
+    @apply bg-moto-dark border border-moto-gray/50 rounded-none
+           hover:border-moto-accent/40 transition-all duration-300;
+  }
+}
+
+@layer utilities {
+  .glitch-hover:hover {
+    animation: glitch 0.3s ease-in-out;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(-2px, -2px); }
+    80% { transform: translate(2px, 2px); }
+    100% { transform: translate(0); }
+  }
+}
