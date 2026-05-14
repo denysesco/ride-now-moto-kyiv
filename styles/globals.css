@@ -2,30 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
-@layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-  body {
-    @apply bg-ride-black text-ride-white font-sans;
-  }
+:root {
+  --primary: #f97316;
+  --primary-dark: #ea580c;
+  --dark: #0f0f0f;
+  --darker: #0a0a0a;
+  --gray-900: #171717;
 }
 
-@layer components {
-  .btn-primary {
-    @apply bg-ride-red hover:bg-ride-red-hover text-white font-bold py-3 px-8 rounded-full 
-           transition-all duration-300 uppercase tracking-wider text-sm;
-  }
-  .btn-outline {
-    @apply border-2 border-ride-red text-ride-red hover:bg-ride-red hover:text-white 
-           font-bold py-3 px-8 rounded-full transition-all duration-300 uppercase tracking-wider text-sm;
-  }
-  .section-title {
-    @apply text-4xl md:text-5xl font-black uppercase tracking-tight;
-  }
-  .section-subtitle {
-    @apply text-ride-gray text-lg md:text-xl max-w-2xl;
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--darker);
+  color: #f5f5f5;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #f97316, #ef4444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
